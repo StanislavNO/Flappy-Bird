@@ -1,16 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public abstract class Bullet : MonoBehaviour 
+    public abstract class Bullet : MonoBehaviour
     {
         [SerializeField] protected float Speed;
-
-        private void Awake()
-        {
-            gameObject.SetActive(false);
-        }
 
         private void Update()
         {
@@ -19,7 +13,11 @@ namespace Assets.Scripts
 
         private void Move()
         {
-            transform.Translate(-(Vector3.up * Speed * Time.deltaTime), Space.Self);
+            transform.Translate(
+                -(Vector3.up
+                * Speed
+                * Time.deltaTime)
+                , Space.Self);
         }
     }
 }

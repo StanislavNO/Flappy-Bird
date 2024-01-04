@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -31,11 +29,6 @@ namespace Assets.Scripts
         private void OnDisable()
         {
             _handler.CollisionDetected -= ProcessCollision;
-        }
-
-        private void OnDestroy()
-        {
-            Debug.Log("Bird");
         }
 
         private void ProcessCollision(IInteractable interactable)

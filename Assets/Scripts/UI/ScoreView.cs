@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using UnityEngine;
 using TMPro;
-using UnityEngine;
 
 namespace Assets.Scripts.UI
 {

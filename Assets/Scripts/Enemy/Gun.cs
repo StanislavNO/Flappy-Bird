@@ -7,9 +7,8 @@ namespace Assets.Scripts
     public class Gun : MonoBehaviour
     {
         [SerializeField] private Bullet _prefab;
-        [SerializeField] private bool _byClick;
         [SerializeField] private Transform _attackPoint;
-        [SerializeField] private Quaternion _attackRotation;
+        [SerializeField] private bool _byClick;
 
         private float _speed = 1f;
         private int _maxBullet = 5;
@@ -20,10 +19,10 @@ namespace Assets.Scripts
         {
             _bullets = new List<Bullet>();
             CreateBullets();
-            
-            foreach (Bullet bullet in _bullets )
+
+            foreach (Bullet bullet in _bullets)
             {
-                bullet.gameObject.SetActive( false );
+                bullet.gameObject.SetActive(false);
             }
         }
 
@@ -43,10 +42,8 @@ namespace Assets.Scripts
         {
             if (_byClick)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
+                if (Input.GetKeyDown(KeyCode.A))
                     Shoot();
-                }
             }
         }
 
@@ -56,7 +53,7 @@ namespace Assets.Scripts
             _bulletCounter++;
 
             bullet.transform.position = _attackPoint.position;
-            bullet.transform.rotation = _attackRotation;
+            bullet.transform.rotation = _attackPoint.rotation;
             bullet.gameObject.SetActive(true);
 
             if (_bulletCounter == _maxBullet)
@@ -69,8 +66,8 @@ namespace Assets.Scripts
 
             while (gameObject.activeSelf)
             {
-                Shoot();
                 yield return delay;
+                Shoot();
             }
         }
 
@@ -78,17 +75,14 @@ namespace Assets.Scripts
         {
             for (int i = 0; i < _maxBullet; i++)
             {
-                Bullet bullet = Instantiate(
-                    _prefab,
-                    _attackPoint.position,
-                    Quaternion.identity);
+                Bullet bullet = Instantiate(_prefab);
 
-                _bullets.Add(bullet);
                 bullet.gameObject.SetActive(false);
+                _bullets.Add(bullet);
             }
         }
 
-        private void Reset()
+        public void Reset()
         {
             for (int i = 0; i < _bullets.Count; i++)
             {

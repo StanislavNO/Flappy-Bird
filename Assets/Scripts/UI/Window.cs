@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using Unity.VisualScripting;
+﻿using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -37,7 +34,7 @@ namespace Assets.Scripts
             gameObject.SetActive(false);
             ActionButton.interactable = false;
         }
-         
+
         protected abstract void OnButtonClick();
     }
 }

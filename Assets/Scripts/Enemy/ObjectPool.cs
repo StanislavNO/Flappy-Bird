@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -21,14 +20,17 @@ namespace Assets.Scripts
 
         public Enemy GetEnemy()
         {
-            if(_pool.Count == 0)
+            if (_pool.Count == 0)
             {
                 var prefab = Instantiate(_enemyPrefab);
                 prefab.transform.parent = _container;
-                
+
+                prefab.GetComponent<EnemyCollisionHandler>()
+                    .DamageDetected += PutObject;
+
                 return prefab;
             }
-            
+
             return _pool.Dequeue();
         }
 
@@ -40,7 +42,7 @@ namespace Assets.Scripts
 
         public void Reset()
         {
-            List<Enemy> enemies = 
+            List<Enemy> enemies =
                 _container
                 .GetComponentsInChildren<Enemy>()
                 .ToList();

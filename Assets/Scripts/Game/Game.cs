@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -33,6 +31,8 @@ namespace Assets.Scripts
         private void StartGame()
         {
             Time.timeScale = 1.0f;
+            _bird.gameObject.SetActive(false);
+            _bird.gameObject.SetActive(true);
             _bird.Reset();
         }
 
